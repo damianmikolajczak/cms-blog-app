@@ -10,9 +10,7 @@ body {
 .head_text {
     color: white;
 }
-.card{
-    border-radius: 5px;
-}
+
 </style>
 <header class="masthead">
     <div class="overlay"></div>
@@ -20,27 +18,34 @@ body {
         <div class="row">
             <div class=" col-md-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3 class=" site-heading my-4 mt-3 text-white"> This blog is like my adventures  </h3>
+                    <h3 class="site-heading my-4 mt-3 text-white"> This blog is like my adventures  </h3>
                     <p class="text-light">A never ending story! </p>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<div class="container">
-    <div class="row">
-            {% for post in post_list %}
-            <div class="card col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text">{{post.content|slice:":200" }}</p>
-                    <a href="{% url 'entire_post' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8 mt-3 left">
+                {% for post in post_list %}
+                <div class="card text-center mb-4">
+                    <img class="card-img-top" style="height: auto;" src="{{post.photo.url}}" alt="Can't load photo">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                        <p class="card-text text-muted">{{post.content|slice:":400" }}</p>
+                        <a href="{% url 'entire_post' post.slug  %}" class="btn btn-dark btn-sm">Read More &rarr;</a>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        </div>
     </div>
-</div>
+</section>
 {% if is_paginated %}
   <nav aria-label="Page navigation conatiner"></nav>
   <ul class="pagination justify-content-center">
