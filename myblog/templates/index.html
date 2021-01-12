@@ -4,7 +4,7 @@
 body {
     font-family: "Roboto", sans-serif;
     font-size: 18px;
-    background-color: #fdfdfd;
+    background-color: rgb(200, 200, 200);
 }
 
 .head_text {
@@ -53,6 +53,7 @@ body {
         </div>
     </div>
 </section>
+
 {% if is_paginated %}
   <nav aria-label="Page navigation conatiner"></nav>
   <ul class="pagination justify-content-center">
@@ -61,7 +62,6 @@ body {
     {% endif %}
     {% if page_obj.has_next %}
     <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> DALEJ &raquo;</a></li>
-
     {% endif %}
   </ul>
   </nav>
