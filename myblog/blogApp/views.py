@@ -9,15 +9,20 @@ def Contact(request):
         message_name = request.POST['senders-name']
         message_email = request.POST['senders-email']
         message = request.POST['senders-message']
+        message_recipient = request.POST['email-recipiest']
 
-        send_mail(
-            'Message from o' + message_name,
-             message,
-             message_email,
-             ['damian_mikolajczak@icloud.com'],
-             )
+        if message_recipient=='Damian':
+                mail_to = 'damian.mikolajczak@student.put.poznan.pl'
+        else:
+                mail_to = 'barbara.sibinska@student.put.poznan.pl'
         
-        return render(request, 'contact.html')
+        send_mail(
+            'Message from ' + message_name,
+            message,
+            message_email,
+            [mail_to],
+            )
+        return render(request, 'contact.html',{'message_name':message_name})
     else:
         return render(request,'contact.html')
     

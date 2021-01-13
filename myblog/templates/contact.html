@@ -3,13 +3,7 @@
 <style>
     .contact-form{
         background-color: white;
-        border-radius: 50px;
-    }
-
-    .user-image{
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-        border-color: white;
+        border-radius: 20px;
     }
     .contact-text-content{
         background-color: white;
@@ -34,71 +28,81 @@
     <div class="container-fluid contact-text-content mb-5">
         <div class="row">
             <div class="col-8 mx-auto">
-                <h3 class=" mt-4"> Hey you ! </h3> <br>
+                {% if message_name %}
+                    <center>
+                        <br><br><br>
+                        <h1>
+                            Thanks {{message_name}} for contacting us!
+                        </h1>
+                        <p class="text-muted">
+                            Your message was sendend. We will anwser you as soon as we can :)
+                        </p>
+                        <br><br><br>
+                    </center>
+                {% else %}
+                <h3 class=" mt-4"> Hello ! </h3> <br>
                 <p style="line-height: 2;">You can write to us using this contact forms below or through facebook and instagram. You will find the needed links in the sidebar on the main page. 
                     If you have any questions about the web page, posted content and so on please text to Damian. He is the right one for you. In case you dont know how to shoot the perfect photo on your own adeventure or how to plan the perfect journey
                 then please let Barbara know. And don't forget that, even if you choose the wrong person, we will recive your mail and contact you with the right one of us.</p>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
+{% if not message_name %}
 <div class="container">
     <div class="row">
-        <div class="col-10 col-md-8 col-lg-5 mb-5 mx-auto">
-            <form class="contact-form p-5">
-                <img class="user-image card-img-top mb-3" src="images/barbara.jpg" alt="Here should be Barbaras face :)">
-                <div class="mb-3">
-                    <label for="mailForBarbara">E-mail adress</label>
-                    <input class="form-control" type="email" id="mailForBarbara">
-                    <div class="form-text">
-                        Your email adress will be used only for contact purpose.
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="textToBarbara" class="form-label"> Text me </label>
-                    <textarea class="form-control" name="textContent" id="textToBarbara" rows="10"></textarea>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="checkboxForBarbara">
-                    <label for="checkboxForBarbara" class="form-check-label">I agere
-                        <div class="form-text">
-                            for using my email adress for contact purpose.
-                        </div>
-                    </label>
-                </div>
-                <button id="sendToBarbara" type="submit" class="btn btn-dark">Send</button>
-            </form>
-        </div>
-        <div class="col-10 col-md-8 col-lg-5 mb-5 mx-auto">
+        <div class="col-12 mx-auto">
             <form action="{% url 'contact' %}" method="post" class="contact-form p-5">
                 {% csrf_token %}
-                <img class="user-image card-img-top mb-3" src="images/damian.jpg" alt="Here should be Damians face :)">
-                <div class="mb-3 mt-3">
-                    <label for="sendersNameId"> Name</label>
-                    <input class="form-control" type="text" name="senders-name" id="sendersNameId">
-                </div>
-                <div class="mb-3">
-                    <label for="mailDorDamian">E-mail adress</label>
-                    <input class="form-control" type="email" name="senders-email" id="mailForDamian">
-                    <div class="form-text">
-                        Your email adress will be used only for contact purpose.
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 float-left">
+                            <div class="mb-3">
+                                <label for="sendersNameId"> Name</label>
+                                <input class="form-control" type="text" name="senders-name" id="sendersNameId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mailFrom">E-mail adress</label>
+                                <input class="form-control" type="email" name="senders-email" id="mailFrom">
+                                <div class="form-text">
+                                    Your email adress will be used only for contact purpose.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="selectPerson">Text to</label>
+                                <select class="form-control" id="selectPerson" name="email-recipiest">
+                                    <option>Barbara</option>
+                                    <option>Damian</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-8 mb-3 float-right" >
+                            <label for="messageContent" class="form-label"> Text me </label>
+                            <textarea class="form-control" name="senders-message" id="messageContent" rows="10"></textarea>
+                        </div>
+                        <div class="col-12">
+                            
+                            <div>
+                                <button id="sendTo" type="submit" class="btn btn-dark">Send</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="textToDamian" class="form-label"> Text me </label>
-                    <textarea class="form-control" name="senders-message" id="textToDamian" rows="10"></textarea>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="checkboxForDamian">
-                    <label for="checkboxForDamian" class="form-check-label">I agere
-                        <div class="form-text">
-                            for using my email adress for contact purpose.
-                        </div>
-                    </label>
-                </div>
-                <button id="sendToDamian" type="submit" class="btn btn-dark">Send</button>
+                
             </form>
         </div>
     </div>
 </div>
+
+{% endif %}
+
 {%endblock%}
+
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="checkboxForDamian">
+    <label for="checkboxForDamian" class="form-check-label">I agere
+        <div class="form-text">for using my email adress for contact purpose.
+        </div>
+    </label> 
+</div>
