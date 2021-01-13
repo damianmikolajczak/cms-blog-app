@@ -127,3 +127,9 @@ MEDIA_URL = "/images/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
+EMAIL_HOST = 'smtp.aol.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'mik_dam@aol.com'
+EMAIL_HOST_PASSWORD = '*****'
+EMAIL_USE_SSL = True
+

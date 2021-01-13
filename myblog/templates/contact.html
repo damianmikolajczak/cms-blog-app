@@ -70,18 +70,23 @@
             </form>
         </div>
         <div class="col-10 col-md-8 col-lg-5 mb-5 mx-auto">
-            <form class="contact-form p-5">
+            <form action="{% url 'contact' %}" method="post" class="contact-form p-5">
+                {% csrf_token %}
                 <img class="user-image card-img-top mb-3" src="images/damian.jpg" alt="Here should be Damians face :)">
+                <div class="mb-3 mt-3">
+                    <label for="sendersNameId"> Name</label>
+                    <input class="form-control" type="text" name="senders-name" id="sendersNameId">
+                </div>
                 <div class="mb-3">
                     <label for="mailDorDamian">E-mail adress</label>
-                    <input class="form-control" type="email" id="mailForDamian">
+                    <input class="form-control" type="email" name="senders-email" id="mailForDamian">
                     <div class="form-text">
                         Your email adress will be used only for contact purpose.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="textToDamian" class="form-label"> Text me </label>
-                    <textarea class="form-control" name="textContent" id="textToDamian" rows="10"></textarea>
+                    <textarea class="form-control" name="senders-message" id="textToDamian" rows="10"></textarea>
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="checkboxForDamian">
