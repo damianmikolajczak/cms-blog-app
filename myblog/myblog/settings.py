@@ -28,8 +28,8 @@ SECRET_KEY = 't(6rug&!sib&w=#@6d_8vmyfnq$)ujv*99sd6)wk&bymw3)ur0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+DEFAULT_FROM_EMAIL = 'damian49841@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogApp'
+
 ]
 
 MIDDLEWARE = [
