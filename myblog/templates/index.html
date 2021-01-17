@@ -113,10 +113,10 @@
   <nav aria-label="Page navigation conatiner"></nav>
   <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; WSTECZ </a></li>
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-dark">Previous</a></li>
     {% endif %}
     {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> DALEJ &raquo;</a></li>
+    <li><a href="?page={{ page_obj.next_page_number }}" class="btn btn-dark">Next</a></li>
     {% endif %}
   </ul>
   </nav>
