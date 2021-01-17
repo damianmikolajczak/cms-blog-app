@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Post
 from django.core.mail import send_mail
+from rest_framework import  viewsets
+from . import serializers
+from django.contrib.auth.models import User
 
-# Create your views here.
+#Contact function was defind to handle HTTP methods
 def Contact(request):
     if request.method == "POST":
         message_name = request.POST['senders-name']
@@ -35,3 +38,10 @@ class PostDetail(generic.DetailView):
     model = Post
     template_name = 'entire_post.html'
 
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = serializers.PostSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
