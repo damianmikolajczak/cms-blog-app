@@ -30,6 +30,7 @@ DEBUG = True
 
 DEFAULT_FROM_EMAIL = 'damian49841@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Application definition
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogApp',
     'rest_framework',
+    'crispy_forms',
 
 ]
 
