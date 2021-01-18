@@ -72,7 +72,7 @@
             <div class="col-12 col-lg-8 mt-3 left" >
                 {% for post in post_list %}
                 <div class="post-card card text-center mb-5" >
-                    <img class="post-image card-img-top" src="{{post.photo.url}}" alt="Can't load photo">
+                    <img class="post-image card-img-top" src="{{post.main_photo.url}}" alt="Can't load photo">
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>
                         <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
